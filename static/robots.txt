@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: http://derekfields.is/sitemap.xml
+Disallow: /ghost/
