@@ -1,0 +1,504 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Guardrails">
+    <title>Guardrails: VR From A Microcontroller - Guardrails</title>
+    <meta name="author" content="Derek Fields">
+
+
+        <link rel="icon" href="http://DerekFields.is/blogging/assets/images/favicon-16x16.png">
+
+
+    <meta name="description" content="In December of 2017, I came up with an idea of having a VR world stem from a microcontroller, the ESP8266. Around this time, Baltimore, my home city, was about to have it’s first Indie Web">
+<meta name="keywords" content="Guardrails,VR,Microcontrollers,IndieWeb">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Guardrails: VR From A Microcontroller">
+<meta property="og:url" content="http://DerekFields.is/blogging/2018/03/27/Guardrails-VR-From-A-Microcontroller/index.html">
+<meta property="og:site_name" content="Guardrails">
+<meta property="og:description" content="In December of 2017, I came up with an idea of having a VR world stem from a microcontroller, the ESP8266. Around this time, Baltimore, my home city, was about to have it’s first Indie Web">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://derekfields.is/Assets2/NodeMCU_Pinout.png">
+<meta property="og:updated_time" content="2018-04-25T00:42:16.586Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Guardrails: VR From A Microcontroller">
+<meta name="twitter:description" content="In December of 2017, I came up with an idea of having a VR world stem from a microcontroller, the ESP8266. Around this time, Baltimore, my home city, was about to have it’s first Indie Web">
+<meta name="twitter:image" content="http://derekfields.is/Assets2/NodeMCU_Pinout.png">
+<meta name="twitter:creator" content="@DJFalcon23">
+
+
+
+
+
+        <meta property="og:image" content="http://DerekFields.is/blogging/assets/images/ProtfolioProfilePic.jpg"/>
+
+
+
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="/blogging/assets/css/style-pz4cc6y13wt2trzqa8l3n9v0yykr0sstdaheem7qj628nhjmhp9pfawvqawz.min.css">
+    <!--STYLES END-->
+
+
+
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+
+
+
+
+
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/blogging/ ">Guardrails</a>
+    </div>
+
+
+            <a  class="header-right-picture "
+                href="#about">
+
+
+            <img class="header-picture" src="/blogging/assets/images/ProtfolioProfilePic.jpg" alt="Author&#39;s picture"/>
+
+        </a>
+
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+
+            <div class="sidebar-profile">
+                <a href="/blogging/#about">
+                    <img class="sidebar-profile-picture" src="/blogging/assets/images/ProtfolioProfilePic.jpg" alt="Author&#39;s picture"/>
+                </a>
+                <h4 class="sidebar-profile-name">Derek Fields</h4>
+
+                    <h5 class="sidebar-profile-bio"><p>author.bio</p>
+</h5>
+
+            </div>
+
+
+            <ul class="sidebar-buttons">
+
+                <li class="sidebar-button">
+
+                        <a  class="sidebar-button-link "
+                             href="/blogging/ "
+
+                            title="Home"
+                        >
+
+                        <i class="sidebar-button-icon fa fa-lg fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+
+                <li class="sidebar-button">
+
+                        <a  class="sidebar-button-link "
+                             href="/blogging/all-categories"
+
+                            title="Categories"
+                        >
+
+                        <i class="sidebar-button-icon fa fa-lg fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+
+                <li class="sidebar-button">
+
+                        <a  class="sidebar-button-link "
+                             href="/blogging/all-tags"
+
+                            title="Tags"
+                        >
+
+                        <i class="sidebar-button-icon fa fa-lg fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+
+                <li class="sidebar-button">
+
+                        <a  class="sidebar-button-link "
+                             href="/blogging/all-archives"
+
+                            title="Archives"
+                        >
+
+                        <i class="sidebar-button-icon fa fa-lg fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+
+                <li class="sidebar-button">
+
+                        <a  class="sidebar-button-link open-algolia-search"
+                             href="#search"
+
+                            title="Search"
+                        >
+
+                        <i class="sidebar-button-icon fa fa-lg fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+
+                <li class="sidebar-button">
+
+                        <a  class="sidebar-button-link "
+                             href="#about"
+
+                            title="About"
+                        >
+
+                        <i class="sidebar-button-icon fa fa-lg fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+
+        </ul>
+
+            <ul class="sidebar-buttons">
+
+                <li class="sidebar-button">
+
+                        <a  class="sidebar-button-link " href="https://github.com/DJFalcon23" target="_blank" rel="noopener" title="GitHub">
+
+                        <i class="sidebar-button-icon fa fa-lg fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+
+                <li class="sidebar-button">
+
+                        <a  class="sidebar-button-link " href="https://twitter.com/DJFalcon23" target="_blank" rel="noopener" title="Twitter">
+
+                        <i class="sidebar-button-icon fa fa-lg fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+
+                <li class="sidebar-button">
+
+                        <a  class="sidebar-button-link " href="https://facebook.com/DJFalcon23" target="_blank" rel="noopener" title="Facebook">
+
+                        <i class="sidebar-button-icon fa fa-lg fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+
+                <li class="sidebar-button">
+
+                        <a  class="sidebar-button-link " href="https://www.linkedin.com/profile//derek-j-fields/" target="_blank" rel="noopener" title="LinkedIn">
+
+                        <i class="sidebar-button-icon fa fa-lg fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+
+        </ul>
+
+            <ul class="sidebar-buttons">
+
+                <li class="sidebar-button">
+
+                        <a  class="sidebar-button-link "
+                             href="/blogging/atom.xml"
+
+                            title="RSS"
+                        >
+
+                        <i class="sidebar-button-icon fa fa-lg fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+
+
+            <div id="main" data-behavior="5"
+                 class="
+                        hasCoverMetaIn
+                        ">
+
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+
+
+        <div class="post-header main-content-wrap text-left">
+
+        <h1 class="post-title" itemprop="headline">
+            Guardrails: VR From A Microcontroller
+        </h1>
+
+
+        <div class="post-meta">
+    <time itemprop="datePublished" datetime="2018-03-27T18:33:00-04:00">
+
+		    Mar 27, 2018
+
+    </time>
+
+        <span>in </span>
+
+    <a class="category-link" href="/blogging/categories/Guardrails/">Guardrails</a>
+
+
+
+</div>
+
+
+</div>
+
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <main class="content" role="main"><br>    <article class="post"><br>        <section class="post-content"><p>In December of 2017, I came up with an idea of having a VR world stem from a microcontroller, the ESP8266. Around this time, Baltimore, my home city, was about to have it’s first Indie Web Camp, and I wanted to have a project to work on and show off. So, I started to brainstorm; “What would be cool, unique and interesting to me?” I wondered.</p><br><br><p><img src="http://derekfields.is/Assets2/NodeMCU_Pinout.png" alt="alt text"><br><em>The pinout diagram of the NodeMCU, a ESP8266 based microcontroller board.</em></p><br><br><p>I’m a hands-on guy, so, the project had to either have lots of visuals or involve something physical, because if it didn’t have those qualities, my interest level would be low and it would take me forever to complete. Metaphorically speaking, it had to be something that I could get off the ground fast! The ESP8266 would be a major part of the answer to my question. I knew that it could server up web pages, and with it being design for IoT, it could interact with the physical world via those web pages. “Cool”, I got that part down!</p><br><br><p>Now, what would make it “[…]unique and interesting to me?”, …I still needed to answer that part. I looked around my room to gain inspiration. My eyes locked on to a couple of Google Cardboards that I had laying in one of the many boxes of electronic stuff that I have in my room. “Google Cardboard…, VR…, ESP8266… Cool, cool, leaning towards interesting! Now how the hell can I combined those things?…”, I wondered. “ ‘A-Frame’! BOOM!!!”, I could use A-Frame to glue the those things together.</p><br><br><p>A-Frame’s LogoStraight from A-Frame’s site:  </p><br><br><blockquote><br>  <p><em>A-Frame is a web framework for building virtual reality (VR) experiences. Originally from <a href="https://mozilla.org/" target="_blank" rel="noopener">Mozilla</a>, A-Frame was developed to be an easy but powerful way to develop VR content. <a href="https://github.com/aframevr/" target="_blank" rel="noopener">As an independent open source project</a>, A-Frame has grown to be one of the <a href="https://aframe.io/community/" target="_blank" rel="noopener">largest and most welcoming VR communities.</a><br>  A-Frame is based on top of HTML, making it simple to get started. But A-Frame is not just a 3D scene graph or a markup language; the core is a powerful entity-component framework that provides a declarative, extensible, and composable structure to <a href="https://threejs.org/" target="_blank" rel="noopener">three.js.</a> <br><br>  A-Frame supports most VR headsets such as Vive, Rift, Daydream, GearVR, Cardboard, and can even be used for augmented reality. Although A-Frame supports the whole spectrum, A-Frame aims to define fully immersive interactive VR experiences that go beyond basic 360° content, making full use of positional tracking and controllers.</em></p><br></blockquote><br><br><p>I had the main ingredients, now I had to make something out of them. The first step was to put the ESP8266 in access point and web server mode. I could now write the HTML that contains the A-Frame VR world and put it on the microcontroller. To do all of this I looked up some tutorials on YouTube, and looked up some documentation. What I found was:</p><br><br><iframe width="420" height="345" src="https://youtube.com/embed/Q0eUoFIXrWE?controls=0"> </iframe><br><br><p><em>‘ESP8266 WiFi Access Point Examples with the Arduino IDE’ By David Watts</em></p><br><br><hr><br><br><p><em>and the documentation I found:</em>  </p><br><br><blockquote><br>  <p><strong><a href="http://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/server-examples.html" target="_blank" rel="noopener"><br>  Server - ESP8266 Arduino Core 2.4.0 documentation</a></strong> <br><br>  <a href="http://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/server-examples.html" target="_blank" rel="noopener">Setting up web a server on ESP8266 requires very little code and is surprisingly straightforward. This is thanks to…arduino-esp8266.readthedocs.io</a></p><br></blockquote><br><br><hr><br><br><p>In the description of the video, David Watts (the creator of the video), puts a link to a tool that he created that coverts HTML code in to a string. That saved me a ton of time and frustration. Thanks, David! The tool, also, allows you to designate spaces where you would want to place a variable.</p><br><br><p>At this point, I could call the project a success, but there was no fun to be had at its current stage. The fun would be in those designated spaces for the variables, …with a little bit of Ajax thrown in. My idea is to connect sensors to the ESP8266 and use their data to change or manipulate something in the virtual world. I could use light sensors to change the lighting in the virtual world. I could use an accelerometer and a compass to shake and rotate it. Of course, the reverse is true too, …well the ESP8266 doesn’t have the power shake the Earth but with a few other components, like a servo, perhaps, it could shake a rock.</p><br><br><h6>This project has a lot of potential in how we can interact and use virtual spaces. It has me excited to explore more! Maybe I’ll write a part two.</h6><br>        </section><br><br>    </article><br></main>
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+
+    <a class="tag tag--primary tag--small t-link" href="/blogging/tags/Guardrails/">Guardrails</a> <a class="tag tag--primary tag--small t-link" href="/blogging/tags/IndieWeb/">IndieWeb</a> <a class="tag tag--primary tag--small t-link" href="/blogging/tags/Microcontrollers/">Microcontrollers</a> <a class="tag tag--primary tag--small t-link" href="/blogging/tags/VR/">VR</a>
+
+            </div>
+
+
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+
+
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/blogging/2018/04/16/hello-world/" data-tooltip="Hello World" aria-label="PREVIOUS: Hello World">
+
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+
+                    <a class="post-action-btn btn btn--disabled">
+
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+
+
+
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://DerekFields.is/blogging/2018/03/27/Guardrails-VR-From-A-Microcontroller/" title="Share on Facebook">
+                    <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                </a>
+            </li>
+
+
+
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://DerekFields.is/blogging/2018/03/27/Guardrails-VR-From-A-Microcontroller/" title="Share on Twitter">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+
+
+
+
+        <li class="post-action">
+
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
+
+
+
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2018 Derek Fields. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+
+
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/blogging/2018/04/16/hello-world/" data-tooltip="Hello World" aria-label="PREVIOUS: Hello World">
+
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+
+                    <a class="post-action-btn btn btn--disabled">
+
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+
+
+
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://DerekFields.is/blogging/2018/03/27/Guardrails-VR-From-A-Microcontroller/" title="Share on Facebook">
+                    <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                </a>
+            </li>
+
+
+
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://DerekFields.is/blogging/2018/03/27/Guardrails-VR-From-A-Microcontroller/" title="Share on Twitter">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+
+
+
+
+        <li class="post-action">
+
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+
+
+
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://DerekFields.is/blogging/2018/03/27/Guardrails-VR-From-A-Microcontroller/">
+                    <i class="fa fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
+                </a>
+            </li>
+
+
+
+            <li class="share-option">
+                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://DerekFields.is/blogging/2018/03/27/Guardrails-VR-From-A-Microcontroller/">
+                    <i class="fa fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                </a>
+            </li>
+
+    </ul>
+</div>
+
+
+        </div>
+
+
+
+
+
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+
+            <img id="about-card-picture" src="/blogging/assets/images/ProtfolioProfilePic.jpg" alt="Author&#39;s picture"/>
+
+            <h4 id="about-card-name">Derek Fields</h4>
+
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+
+
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+
+
+            <div id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                Baltimore, MD
+            </div>
+
+    </div>
+</div>
+
+
+
+<div id="cover" style="background-image:url('/blogging/assets/images/Website_Development_Dark.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/blogging/assets/js/script-peofhqjkzcghmndknakluequy1y6owxdwpaqyju9ntl9zxnk7rdolb3rjjoj.min.js"></script>
+<!--SCRIPTS END-->
+
+
+
+
+
+    </body>
+</html>
